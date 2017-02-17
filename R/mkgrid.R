@@ -43,7 +43,7 @@ mkDKN <- function(ext, res){
   grid <- raster::raster(raster::extent(DKNextent()), crs = DKNcrs(), resolution = res)
 
   # Transform this raster into a polygon inside extent.
-  gridpolygon <- raster::rasterToPolygons(crop(grid, raster::extent(ext), snap = "out"))
+  gridpolygon <- raster::rasterToPolygons(raster::crop(grid, raster::extent(ext), snap = "out"))
 
   # Remove cells with no overlap.
   gridpolygon <- gridpolygon[ext, ]
