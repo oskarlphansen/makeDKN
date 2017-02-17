@@ -1,0 +1,11 @@
+Package: makeDKN
+Type: Package
+Title: Make DKN grids
+Version: 0.1.0
+Author: Oskar Liset Pryds Hansen
+Maintainer: Oskar Liset Pryds Hansen <oskar@nathist.dk>
+Description: Create grids as described in http://www.dst.dk/da/TilSalg/produkter/geodata/kvadratnet. 
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports: raster, sp, rgeos
