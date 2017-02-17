@@ -55,7 +55,6 @@ mkDKN <- function(ext, res){
   cent.names <- paste(centroids$x, centroids$y, sep = "_")
   cent.names <- gsub(".", "", cent.names, fixed = T)
   cent.names <- paste(paste(res, "m", sep = ""), cent.names, sep = "_")
-  gridpolygon@data$dknname <- cent.names
-
+  gridpolygon@data <- data.frame("dkname" = cent.names)
   return(gridpolygon)
 }
