@@ -51,7 +51,7 @@ mkDKN <- function(ext, res){
   # Name grid-points
 
   ##Get centroids
-  centroids <- as.data.frame.matrix(coordinates(gCentroid(gridpolygon, byid = T)))
+  centroids <- as.data.frame.matrix(sp::coordinates(rgeos::gCentroid(gridpolygon, byid = T)))
   centroids <- centroids/100000
   cent.names <- paste(centroids$x, centroids$y, sep = "_")
   cent.names <- gsub(".", "", cent.names, fixed = T)
