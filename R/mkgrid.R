@@ -22,10 +22,12 @@ DKNextent <- function(){
 }
 
 
-#mk DKN grid
-#
-# This function create a DKN-grid with the parameters: extent, resolution (in meters)
-#
+#' mk DKN grid
+#'
+#' This function create a DKN-grid with the parameters: extent, resolution (in meters)
+#'
+#' @param ext A spatial layer that you want to have grided.
+#' @param res Resolution of grid in meters.
 # Future idea: Choose output to be either raster or polygon.
 mkDKN <- function(ext, res){
 
