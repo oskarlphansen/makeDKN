@@ -40,7 +40,7 @@ mkDKN <- function(ext, res){
   if(!rgeos::gCovers(DKNextent(), ext)){stop("Extent layer must be within the extent of the DKN definition.")}
 
   # Create an empty raster with defined resolution and DS-extent
-  grid <- raster::raster(xmn = xmin, xmx = xmax, ymn = ymin, ymx = ymax, crs = DKNcrs(), resolution = res)
+  grid <- raster::raster(raster::extent(DKNextent()), crs = DKNcrs(), resolution = res)
 
   # Transform this raster into a polygon inside extent.
   gridpolygon <- raster::rasterToPolygons(crop(grid, raster::extent(ext), snap = "out"))
