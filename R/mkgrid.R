@@ -18,7 +18,6 @@ DKNextent <- function(){
   p <- sp::Polygon(m, hole = FALSE)
   ps <- sp::Polygons(list(p), 1)
   sps <-sp::SpatialPolygons(list(ps), proj4string = DKNcrs())
-  plot(sps)
   return(sps)
 }
 
