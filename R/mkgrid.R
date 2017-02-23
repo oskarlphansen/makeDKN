@@ -35,7 +35,7 @@ mkDKN <- function(ext, res){
   if(!inherits(ext, "Spatial")){stop("Extent layer must be a spatial.")}
   if(!sp::proj4string(DKNextent()) == sp::proj4string(ext)){
     ext <-sp::spTransform(ext, DKNcrs())
-    warning(paste("CRS of input extent not the same as CRS of DKN. It was changed to", DKNcrs(), sep= " "))}
+    warning(paste("CRS of input extent not the same as CRS of DKN. It was changed to", DKNcrs()@projargs, sep= " "))}
 
   #Check if extent-layer is inside DS-corners
   if(!rgeos::gCovers(DKNextent(), ext)){stop("Extent layer must be within the extent of the DKN definition.")}
