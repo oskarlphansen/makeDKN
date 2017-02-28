@@ -28,8 +28,9 @@ DKNextent <- function(){
 #'
 #' @param ext A spatial layer that you want to have grided.
 #' @param res Resolution of grid in meters.
+#' @param raster Logical, decides if output is raster or vector.
 # Future idea: Choose output to be either raster or polygon.
-mkDKN <- function(ext, res){
+mkDKN <- function(ext, res, raster = FALSE){
 
   #Check extent-layer and use spTransform and message, if not in the same CRS.
   if(!inherits(ext, "Spatial")){stop("Extent layer must be a spatial.")}
@@ -46,9 +47,6 @@ mkDKN <- function(ext, res){
   # Transform this raster into a polygon inside extent.
   gridpolygon <- raster::rasterToPolygons(raster::crop(grid, raster::extent(ext), snap = "out"))
 
-  # Remove cells with no overlap.
-  gridpolygon <- gridpolygon[ext, ]
-
   # Name grid-points
 
   ##Get centroids
@@ -58,5 +56,14 @@ mkDKN <- function(ext, res){
   cent.names <- gsub(".", "", cent.names, fixed = T)
   cent.names <- paste(paste(res, "m", sep = ""), cent.names, sep = "_")
   gridpolygon@data <- data.frame("dkname" = cent.names)
+
+  if(raster == TRUE){ # Return a raster, not a vector
+   r <- raster::rasterize(gridpolygon, grid)
+    return(r)
+  }
+
+  # Remove cells with no overlap.
+  gridpolygon <- gridpolygon[ext, ]
+
   return(gridpolygon)
 }
